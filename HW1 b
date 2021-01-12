@@ -1,1 +1,86 @@
+/*******************************************************************
+** Program: assign3_race.cpp
+** Author: Chang Shi
+** Date: 04/05/2020
+** Description: I will design a program for my restaurant 
+   that will help me order and calculate prices for guests. 
+   Tip if the guest likes it.;
+** Input: int number;
+** Output: int fee, tips, string people, string information;
+ *******************************************************************/
 
+#include <iostream>
+#include <string>
+#include <ctime>
+#include <sys/time.h>
+#include <cstdlib>
+
+using namespace std;
+
+bool check_range (int lowerBound, int upperBound, int testValue)
+{
+    if (testValue <lowerBound || testValue > upperBound )
+    {
+    return true;
+    }
+    return false;
+}
+
+float average(float* sum, int* n_people,float& ave)
+{
+    ave= *sum / *n_people;
+}
+
+int main ()
+{
+    int n_diners,n_milktea,max_milktea=4,min_milktea=0,max_diners=10,min_diners=1;
+    cout << "Welcome my milktea store, Glad to be of service to you"<<endl;
+    cout << "Enter your number of diners(1-10):  "<<endl;
+    cin >> n_diners;
+    while(check_range(min_diners,max_diners,n_diners))
+    {
+        cout << "Plase enter your diners again(1-10 people): " <<endl;
+        cin >> n_diners;
+    }
+   
+    int * diners;
+    diners = new int[n_diners];
+    string menu [5]={"fruit tea", "matchalatte","pearl milktea", "milk green tea", "milktea"};
+    float n_price[5] ={5.50, 5.25, 5.00, 4.95, 4.85};
+    int idx = 0;
+    float amount = 0.00,average;
+    for(int i= 0;i<n_diners;i++)
+    {
+        cout << "Diner" << i << endl<<"Please choose your milk tea(0-4): "<<endl;
+        cout << " 0) fruit tea: $5.50 " <<endl;
+        cout << " 1) matchalatte: $5.25 "<<endl;
+        cout << " 2) pearl milktea: $5.00 "<<endl;
+        cout << " 3) milk green tea: $4.95 "<<endl;
+        cout << " 4) milktea: $4.85 "<<endl;
+        cin >> n_milktea;
+    while(check_range(min_milktea,max_milktea,n_milktea))
+    {
+        cout << "Plase enter your milktea again(0-4): " <<endl;
+        cin >> n_milktea;
+    }
+        diners[idx++] = n_milktea;
+
+        amount = amount + n_price[n_milktea];
+    }
+   
+    averge(amount,n_diners,*average);
+    
+    cout << "I hope your milktea was delicious! "<<endl;
+    cout << "The bill for you delightful meal: "<< endl;
+    cout << "-------------------------------------- "<<endl;
+    for(int j=0;j<n_diners;j++)
+    {
+        cout << "Diner "<< j <<") " << menu[diners[j]]<<":  "<<n_price[j]<< endl;
+    }
+    cout << "-------------------------------------- "<<endl;
+    cout <<"Total amount: $ "<< amount <<endl;
+    cout << "The average: $ "<<average<<endl;
+    cout << "-------------------------------------- "<<endl;
+    delete[] diners;
+    return 0;
+}
