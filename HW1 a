@@ -1,1 +1,364 @@
 
+/*******************************************************************
+** Program: assign2_game.cpp
+** Author: Chang Shi
+** Date: 20/04/2020
+** Description: I design a game where the user gets points;
+** Input: int number;
+** Output: int grade, string;
+ *******************************************************************/
+
+//Enter the inserted statement
+#include <iostream>
+#include <sys/time.h>
+#include <cstdlib>
+#include <cmath>
+#include <string>
+
+//Define and do not duplicate my code
+using namespace std;
+
+//Determine if the number in a sentence is a number
+bool is_int (string a)
+{
+    int x;
+
+        for (x = 0; x < a.length(); x++)
+        {
+            if (a[x] >57 || a[x] < 48)
+            {
+                return false;
+            }
+        }
+        return true;
+
+}
+
+//So let's see if it's 0
+bool is_0 (int a)
+{
+    if (a == 0)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+
+}
+
+/*int get_number(int num1)
+{
+  int num=0;
+  num = num+num1;
+  return num;
+}*/
+
+//I try to use this function to determine if the user's input matches
+int get_int(string name)
+{
+    string input;int num;bool flag = true;
+    cout << "Enter your " << name <<":" <<endl;
+    cin >> input;
+
+    while(flag){
+        if(is_int(input) == false)
+        {
+            cout << "Invalid input, enter whole numbers only!" << endl
+            << "Enter your " << name <<":" <<endl;
+            cin >> input;
+        }
+        else
+        {
+            flag = false;
+        }
+    }
+    return num;
+}
+
+//This is my first path, to keep my main function from getting too long.
+int path_game1(int i)
+{
+    string name;
+    cout<<"Captain, may I have your name again? Enter your name again: "<<endl;
+    cin >> name;
+    int num,z,y,x,a,b;
+    //get_number(i);
+    cout << "You are now a navy captain. Please choose your number of soldiers"<<endl;
+    cout<< "1)1000, 2)300, 3)100, 4)60, 5)8" <<endl;
+    cin >> a;
+    if (a==1)
+    {
+        cout <<"Too much! You lose 2 points!"<<endl;
+        z=i-2;
+       // get_number(z);
+    }
+    else if (a==2)
+    {
+        cout <<"It is a little bit much! You got 1 point"<<endl;
+        z=i+1;
+       // get_number(z);
+    }
+    else if(a==3)
+    {
+        cout <<"It is very good! You got 3 points"<<endl;
+        z=i+3;
+     //   get_number(z);
+    }
+    else if (a==4)
+    {
+        cout<<"A little bit not enough! You got 1 point"<<endl;
+        z=i+1;
+     //   get_number(z);
+    }
+    else if (a==5) 
+    {
+        cout << "Too less! You lost 2 points"<<endl;
+        z=i-2;
+      //  get_number(z);
+    }
+    cout<<"Your score now is "<<z<<endl;
+    cout <<"Please select the navigation materials you need"<<endl;
+    cout<<"1)weapons 2)food 3)Ship repairing materials "<<endl;
+    cin >> b;
+    if(b==1)
+    {
+        cout << "You got three points"<<endl;
+        y=z+3;
+    }
+    else if(b==2)
+    {
+        cout << "You got 1 point" << endl;
+        y=z+1;
+    }
+    else if (b==3)
+    {
+        cout << "You lost 2 points"<<endl;
+        y=z-2;
+    }
+    cout << "Your score now is "<<y<<endl;
+    cout << "Now you've started sailing, into random events at sea"<<endl;
+        srand(time(NULL));
+        num = rand() % 3;
+        if (num ==1)
+        {
+            cout<<"Nothing happened. There were no scores."<<endl;
+            x=y;
+        }
+        if(num==2)
+        {
+            cout<<"Meet the pirates and defeat them. You got 5 points"<<endl;
+            x=y+5;
+        }
+        if(num==3)
+        {
+            cout << "You meet merchant ships and help them. You lost 5 points"<<endl;
+            x=y-5;
+        }
+    cout << "Congratulations! "<<name<< "Your final score is "<<x<<endl;
+return x;
+}
+
+//This is my second path, to keep my main function from getting too long.
+int path_game2(int i)
+{
+    string name;
+    cout<<"Captain, may I have your name again? Enter your name again: "<<endl;
+    cin >> name;
+    //get_number(i);
+    int num,z,y,x,a,b;
+    cout << "Now that you are a merchant, please choose how many employees to recruit"<<endl;
+    cout<< "1)1000, 2)300, 3)100, 4)60, 5)8" <<endl;
+    cin >> a;
+
+    if (a==1)
+    {
+        cout <<"Too much! You lose 2 points!"<<endl;
+        z=i-2;
+    //    get_number(z);
+    }
+    else if (a==2)
+    {
+        cout <<"It is a little bit much! You got 1 point"<<endl;
+        z=i+1;
+     //   get_number(z);
+    }
+    else if(a==3)
+    {
+        cout <<"It is very good! You got 3 points"<<endl;
+        z=i+3;
+      //  get_number(z);
+    }
+    else if (a==4)
+    {
+        cout<<"A little bit not enough! You got 1 point"<<endl;
+          z=i+1;
+     //   get_number(z);
+    }
+    else if (a==5) 
+    {
+        cout << "Too less! You lost 2 points"<<endl;
+         z=i-2;
+      //  get_number(z);
+    }
+     cout<<"Your score now is "<<z<<endl;
+    cout <<"Please select the navigation materials you need"<<endl;
+    cout<<"1)weapons 2)food 3)Ship repairing materials "<<endl;
+    cin >> b;
+    if(b==1)
+    {
+        cout << "You lost 3 points"<<endl;
+        y=z-3;
+    }
+    else if(b==2)
+    {
+        cout << "You got 5 point" << endl;
+        y=z+5;
+    }
+    else if (b==3)
+    {
+        cout << "You lost 2 points"<<endl;
+        y=z-2;
+    }
+    cout<<"Your score now is "<<y<<endl;
+    cout << "Now you've started sailing, into random events at sea"<<endl;
+        srand(time(NULL));
+        num = rand() % 3;
+        if (num ==1)
+        {
+            cout<<"Nothing happened. There were no scores."<<endl;
+            x=y;
+        }
+        if(num==2)
+        {
+            cout<<"You've got a pirate ship and you've lost merchandise. You got 5 points"<<endl;
+            x=y+5;
+        }
+        if(num==3)
+        {
+            cout << "You met the navy and got help. You lost 5 points"<<endl;
+            x=y-5;
+        }
+    cout << "Congratulations! "<<name<< "Your final score is "<<x<<endl;
+return x;
+}
+
+//This is my third path, to keep my main function from getting too long.
+int path_game3(int i)
+{
+    string name;
+    cout<<"Captain, may I have your name again? Enter your name again: "<<endl;
+    cin >> name;
+   // get_number(i);
+    int num,z,y,x,a,b;
+    cout << "Now that you are a pirate, choose how many partners to recruit"<<endl;
+    cout<< "1)1000, 2)300, 3)100, 4)60, 5)8" <<endl;
+    cin >> a;
+
+    if (a==1)
+    {
+        cout <<"Too much! You lose 2 points!"<<endl;
+         z=i-2;
+     //   get_number(z);
+    }
+    else if (a==2)
+    {
+        cout <<"It is a little bit much! You got 1 point"<<endl;
+        z=i+1;
+     //   get_number(z);
+    }
+    else if(a==3)
+    {
+        cout <<"It is very good! You got 3 points"<<endl;
+        z=i+3;
+     //   get_number(z);
+    }
+    else if (a==4)
+    {
+        cout<<"A little bit not enough! You got 1 point"<<endl;
+        z=i+1;
+      //  get_number(z);
+    }
+    else if (a==5) 
+    {
+        cout << "Too less! You lost 2 points"<<endl;
+        z=i-2;
+      //  get_number(z);
+    }
+    cout<<"Your score now is "<<z<<endl;
+    cout <<"Please select the navigation materials you need"<<endl;
+    cout<<"1)weapons 2)food 3)Ship repairing materials "<<endl;
+    cin >> b;
+    if(b==1)
+    {
+        cout << "You got 3 points"<<endl;
+        y=z+3;
+    }
+    else if(b==2)
+    {
+        cout << "You lose 1 point" << endl;
+        y=z-1;
+    }
+    else if (b==3)
+    {
+        cout << "You got 3 points"<<endl;
+        y=z+3;
+    }
+    cout<<"Your score now is "<<y<<endl;
+    cout << "Now you've started sailing, into random events at sea"<<endl;
+        srand(time(NULL));
+        num = rand() % 3;
+        if (num ==1)
+        {
+            cout<<"Nothing happened. There were no scores."<<endl;
+            x=y;
+        }
+        if(num==2)
+        {
+            cout<<"You meet merchants and rob them. You got 5 points"<<endl;
+            x=y+5;
+        }
+        if(num==3)
+        {
+            cout << "You met the navy and got caught. You lost 5 points"<<endl;
+            x=y-5;
+        }
+    cout << "Congratulations! "<<name<< "Your final score is "<<x<<endl;
+return x;
+}
+
+//I can have the user play the game multiple times
+int main()
+{
+  int path,q;
+  string name;
+  cout<<"Enter Your name: "<<endl;
+  cin >> name;
+
+  do {
+    cout << "Welcome to the game, the game is a sailing game, please choose your favorite option. You're now at zero."<<endl;
+    cout << "You're a captain now. Please choose your game path:1.warship, 2. merchant ship, 3. pirate ship " << endl;
+    cin >> path;
+    if (path==1)
+    {
+        cout<<"Your score now is 2."<<endl;
+        path_game1(2);
+    }
+    else if (path==2)
+    {
+         cout<<"Your score now is 2."<<endl;
+        path_game2(2);
+    }
+    else if (path==3)
+    {
+         cout<<"Your score now is 2."<<endl;
+        path_game3(2);
+    }
+  cout << "do you want to do another conversion?(0-no, 1-yes)" << endl;
+  cin >> q;
+  }
+  while (q==1);
+
+  return 0;
+}
